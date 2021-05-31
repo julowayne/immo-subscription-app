@@ -1,10 +1,10 @@
 <template>
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-buttons slot="start">
+      <ion-buttons slot="start" @click.prevent="home">
         <ion-img src="assets/icon/alfred-logo-teal-nav-app.png"></ion-img>
       </ion-buttons>
-      <ion-buttons slot="end">
+      <ion-buttons slot="end" @click.prevent="getProfile">
         <ion-img src="assets/icon/utilisateur-nav-app.png"></ion-img>
       </ion-buttons>
     </ion-toolbar>
@@ -16,7 +16,15 @@ import {  IonHeader, IonToolbar, IonImg, IonButtons } from '@ionic/vue';
 
 export default  {
   name: 'Layout',
-  components: { IonHeader, IonToolbar, IonImg, IonButtons, }
+  components: { IonHeader, IonToolbar, IonImg, IonButtons },
+  methods: {
+    getProfile(){
+      this.$router.push({ path: "/profile"});
+    },
+    home(){
+      this.$router.push({ path: "/"});
+    }
+  }
 }
 </script>
 <style>

@@ -15,17 +15,31 @@ const routes = [
         redirect: '/tabs/accueil'
       },
       {
+        path: 'profile',
+        component: () => import('@/views/Profile.vue')
+      },
+      {
+        path: 'offres',
+        component: () => import('@/views/Offers.vue')
+      },
+      {
         path: 'accueil',
         component: () => import('@/views/Accueil.vue')
       },
       {
         path: 'forms',
+        name: 'inscription',
+        component: () => import('@/views/Forms.vue')
+      },
+      {
+        path: 'forms/connexion',
+        name: 'connexion',
         component: () => import('@/views/Forms.vue')
       },
       {
         path: 'contact',
         component: () => import('@/views/Contact.vue')
-      }
+      },
     ]
   }
 ]

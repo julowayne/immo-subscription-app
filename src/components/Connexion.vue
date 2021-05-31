@@ -1,33 +1,18 @@
 <template>
   <div class="content">
     <form>
-      <ion-label for="name">
-        Nom
-      </ion-label>
-      <ion-input id="name" type="text"></ion-input>
-
-      <ion-label for="firstname">
-        Prénom
-      </ion-label>
-      <ion-input id="firstname" type="text"></ion-input>
-
       <ion-label class="block" for="email">
         Email
       </ion-label>
       <ion-input id="email" type="text"></ion-input>
   
-      <ion-label>
-        N° Siret
-      </ion-label>
-      <ion-input id="siret" type="text"></ion-input>
-
       <ion-label for="password">
         Password
       </ion-label>
       <ion-input id="password" type="password"></ion-input>
       <div  class="ion-text-center">
         <ion-button type="button">
-          Créer mon compte
+          Connexion
         </ion-button>
       </div>
     </form>
@@ -44,7 +29,10 @@ import { IonInput, IonLabel, IonButton } from '@ionic/vue';
 </script>
 
 <style>
-
+h1 {
+  color: #20c997;
+  margin-bottom: 1.5em;
+}
 a {
   text-decoration: none;
   color:#20c997;
