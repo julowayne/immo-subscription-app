@@ -1,7 +1,7 @@
 <template>
   <ion-page>
     <ion-tabs>
-      <ion-tab-bar slot="bottom">
+      <ion-tab-bar>
         <ion-tab-button tab="accueil" href="/tabs/accueil">
           <ion-img src="assets/icon/accueil-app.png"></ion-img>
         </ion-tab-button>
@@ -12,6 +12,9 @@
         
         <ion-tab-button tab="contact" href="/tabs/contact">
           <ion-img src="assets/icon/contact-app.png"></ion-img>
+        </ion-tab-button>
+        <ion-tab-button tab="actualites" href="/tabs/actualites">
+          <ion-img src="assets/icon/journal2.png"></ion-img>
         </ion-tab-button>
       </ion-tab-bar>
     </ion-tabs>

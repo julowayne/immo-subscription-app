@@ -2,19 +2,19 @@
   <ion-page>
     <ion-content :fullscreen="true">
       <Layout />
-      <Home name="Tab 1 page" />
+      <news-card />
     </ion-content>
   </ion-page>
 </template>
 
 <script>
 import { IonPage, IonContent} from '@ionic/vue';
-import Home from '@/components/Home.vue';
 import Layout from '@/components/Layout.vue';
+import NewsCard from '@/components/Actualites/NewsCard.vue';
 
 export default  {
-  name: 'Accueil',
-  components: { Home, IonContent, IonPage, Layout }
+  name: 'Actualites',
+  components: { NewsCard, IonContent, IonPage, Layout }
 }
 </script>
 <style>
