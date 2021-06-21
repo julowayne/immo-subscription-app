@@ -2,7 +2,7 @@
   <ion-page>
     <ion-content :fullscreen="true">
       <Layout />
-      <news-card />
+      <news-card :allNews="allNews" />
     </ion-content>
   </ion-page>
 </template>
@@ -17,26 +17,28 @@ import axios from 'axios'
 export default  {
   name: 'Actualites',
   components: { NewsCard, IonContent, IonPage, Layout },
+  data(){
+    return {
+      allNews: []
+    }
+  },
   methods:{
     getNews(){
-      axios("https://tennis-affluence.herokuapp.com/api/news", {
-          method: 'GET',
-          headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        }
-      })
-      .then((response)=> {
-        console.log(response)
-      })
-      .catch(error => {
-        console.log(error);
-
-    });
-    this.errors = []
+      axios.get(`${process.env.VUE_APP_URL}api/news`)
+        .then((response)=> {
+          this.allNews = response.data.allNews
+          console.log(response)
+        })
+        .catch(error => {
+          console.log(error);
+      });
+      this.errors = []
+    }
     },
+    mounted(){
+      this.getNews()
+    }
   }
-}
 </script>
 <style>
 ion-page {
