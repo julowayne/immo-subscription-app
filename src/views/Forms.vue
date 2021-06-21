@@ -30,7 +30,7 @@ export default  {
 }
 </script>
 <style scoped>
-
+h1 {
   color: #20c997;
   margin-bottom: 1em;
 }
