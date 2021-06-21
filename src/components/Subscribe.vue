@@ -1,6 +1,6 @@
 <template>
   <div class="content">
-    <form>
+    <form method="POST" @submit.prevent="register">
       <ion-label for="lastname">
         Nom
       </ion-label>
@@ -14,7 +14,7 @@
       <ion-label class="block" for="email">
         Email
       </ion-label>
-      <ion-input v-model="registerForm.email" id="email" type="text"></ion-input>
+      <ion-input v-model="registerForm.email" id="email" type="email"></ion-input>
   
       <ion-label class="block" for="siret">
         N° Siret
@@ -25,8 +25,8 @@
         Password
       </ion-label>
       <ion-input v-model="registerForm.password" id="password" type="password"></ion-input>
-      <div  class="ion-text-center">
-        <ion-button type="button">
+      <div class="ion-text-center">
+        <ion-button type="submit">
           Créer mon compte
         </ion-button>
       </div>
@@ -56,18 +56,18 @@ import axios from 'axios'
     },
     methods:{
       register(){
-        axios("https://whoisalfred.herokuapp.com/api/register", {
+        axios(`${process.env.VUE_APP_URL}api/auth/register`, {
             method: 'POST',
             headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
           },
           data: {
-            firstname: this.refisterForm.firstname,
-            lastname: this.refisterForm.lastname,
-            email: this.refisterForm.email,
-            siret: this.refisterForm.siret,
-            password: this.refisterForm.password,
+            firstname: this.registerForm.firstname,
+            lastname: this.registerForm.lastname,
+            email: this.registerForm.email,
+            siret: this.registerForm.siret,
+            password: this.registerForm.password,
           } 
         })
         .then((response)=> {
