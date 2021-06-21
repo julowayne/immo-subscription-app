@@ -1,30 +1,30 @@
 <template>
   <div class="content">
     <form>
-      <ion-label for="name">
+      <ion-label for="lastname">
         Nom
       </ion-label>
-      <ion-input id="name" type="text"></ion-input>
+      <ion-input v-model="registerForm.lastname" id="lastname" type="text"></ion-input>
 
       <ion-label for="firstname">
         Prénom
       </ion-label>
-      <ion-input id="firstname" type="text"></ion-input>
+      <ion-input v-model="registerForm.firstname" id="firstname" type="text"></ion-input>
 
       <ion-label class="block" for="email">
         Email
       </ion-label>
-      <ion-input id="email" type="text"></ion-input>
+      <ion-input v-model="registerForm.email" id="email" type="text"></ion-input>
   
-      <ion-label>
+      <ion-label class="block" for="siret">
         N° Siret
       </ion-label>
-      <ion-input id="siret" type="text"></ion-input>
+      <ion-input v-model="registerForm.siret" id="siret" type="text"></ion-input>
 
-      <ion-label for="password">
+      <ion-label class="block" for="password">
         Password
       </ion-label>
-      <ion-input id="password" type="password"></ion-input>
+      <ion-input v-model="registerForm.password" id="password" type="password"></ion-input>
       <div  class="ion-text-center">
         <ion-button type="button">
           Créer mon compte
@@ -36,10 +36,57 @@
 
 <script>
 import { IonInput, IonLabel, IonButton } from '@ionic/vue';
+import axios from 'axios'
+
 
   export default {
     name: 'Subscribe',
-    components: { IonInput, IonLabel, IonButton  }
+    components: { IonInput, IonLabel, IonButton  },
+    data(){
+      return {
+        registerForm: {
+          firstname: '',
+          lastname: '',
+          email: '',
+          siret: '',
+          password: ''
+        },
+        errors: [],
+      }
+    },
+    methods:{
+      register(){
+        axios("https://whoisalfred.herokuapp.com/api/register", {
+            method: 'POST',
+            headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+          data: {
+            firstname: this.refisterForm.firstname,
+            lastname: this.refisterForm.lastname,
+            email: this.refisterForm.email,
+            siret: this.refisterForm.siret,
+            password: this.refisterForm.password,
+          } 
+        })
+        .then((response)=> {
+          // if(response.status === 201) return this.validationMessage = response.data.message, this.token = response.data.token
+          this.$router.push({ path: "/" });
+          console.log(response)
+        })
+        .catch(error => {
+          console.log(error);
+          // if(error.response.status === 400 || error.response.status ===  422){
+          //   return this.errors.push(error.response.data.messages[0])
+          //   }
+          //   console.log(error.response.data);
+          //   console.log(error.response.status);
+          //   console.log(error.response.headers);
+      });
+      this.errors = []
+      },
+    }
   }
 </script>
 

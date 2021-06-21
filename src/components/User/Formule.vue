@@ -45,7 +45,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .content {
   display: flex;
   justify-content: center;
@@ -64,6 +64,8 @@ ion-button {
   --background-activated: #007bff;
   --border-radius: 4px;
   font-size: 1.2em;
+  width: 100%;
+  height: 2.5rem;
 }
 ion-card-title {
   font-size: 1rem;
@@ -93,8 +95,8 @@ hr {
   font-size: 2em;
   font-weight: bold;
 }
-ion-button {
+/* ion-button {
   width: 100%;
   height: 2.5rem;
-}
+} */
 </style>

@@ -11,10 +11,31 @@
 import { IonPage, IonContent} from '@ionic/vue';
 import Layout from '@/components/Layout.vue';
 import NewsCard from '@/components/Actualites/NewsCard.vue';
+import axios from 'axios'
+
 
 export default  {
   name: 'Actualites',
-  components: { NewsCard, IonContent, IonPage, Layout }
+  components: { NewsCard, IonContent, IonPage, Layout },
+  methods:{
+    getNews(){
+      axios("https://tennis-affluence.herokuapp.com/api/news", {
+          method: 'GET',
+          headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        }
+      })
+      .then((response)=> {
+        console.log(response)
+      })
+      .catch(error => {
+        console.log(error);
+
+    });
+    this.errors = []
+    },
+  }
 }
 </script>
 <style>

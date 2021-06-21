@@ -3,7 +3,7 @@
     <ion-content :fullscreen="true">
     <Layout />
     <h1 class="ion-text-center"><a @click.prevent="inscriptionForm">Inscription</a>  | <a @click.prevent="connectForm">Connexion</a> </h1>
-    <connexion v-if="$route.name === 'connexion'" />
+    <connexion v-if="$route.name === 'Connexion'" />
     <Subscribe v-else />
     </ion-content>
   </ion-page>
@@ -30,7 +30,7 @@ export default  {
 }
 </script>
 <style scoped>
-h1 {
+
   color: #20c997;
   margin-bottom: 1em;
 }

@@ -64,7 +64,7 @@
         </div>
       </div>
       <div class="ion-text-center" id="choose">
-        <ion-button type="button">
+        <ion-button class="choose" type="button">
           Choisir
         </ion-button>
       </div>
@@ -87,7 +87,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .content {
   display: flex;
   justify-content: center;
@@ -112,6 +112,8 @@ ion-button {
   --background-activated: #007bff;
   --border-radius: 4px;
   font-size: 1.2em;
+  width: 100%;
+  height: 2.5rem;
 }
 ion-card-title {
   font-size: 1rem;
@@ -144,8 +146,8 @@ hr {
 #choose {
   margin-top: 1rem;
 }
-ion-button {
+/* ion-button {
   width: 100%;
   height: 2.5rem;
-}
+} */
 </style>
