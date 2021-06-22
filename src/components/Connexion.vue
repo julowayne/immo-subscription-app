@@ -4,11 +4,13 @@
       <ion-label class="block" for="email">
         Email
       </ion-label>
+      <div class="errors" v-if="errors">{{errors[0]}}</div>
       <ion-input v-model="loginForm.email" id="email" type="text"></ion-input>
   
       <ion-label for="password">
         Password
       </ion-label>
+      <div class="errors" v-if="errors">{{errors[1]}}</div>
       <ion-input v-model="loginForm.password" id="password" type="password"></ion-input>
       <div class="ion-text-center">
         <ion-button type="submit">
@@ -26,14 +28,18 @@ import axios from 'axios'
 
   export default {
     name: 'Subscribe',
-    components: { IonInput, IonLabel, IonButton  },
+    components: { IonInput, IonLabel, IonButton },
     data(){
       return {
         loginForm: {
           email: '',
           password: ''
         },
-        errors: [],
+        errors: []
+        // errors: {
+        //   email:'',
+        //   password: '',
+        // },
       }
     },
     methods:{
@@ -54,7 +60,12 @@ import axios from 'axios'
           console.log(response)
         })
         .catch(error => {
-          console.log(error);
+          // console.log(error.errors.email[0]);
+          console.log(error.response.data.errors.email[0]);
+
+          if(error.response.status === 400 || error.response.status ===  422){
+            return this.errors.push(error.response.data.errors.email[0], error.response.data.errors.password[0])
+          }
 
       });
       this.errors = []
@@ -67,6 +78,10 @@ import axios from 'axios'
 a {
   text-decoration: none;
   color:#20c997;
+}
+.errors {
+  margin: 2px 0;
+  color:red;
 }
 ion-button {
   --box-shadow: 0 .125rem .25rem rgba(0,0,0,.075)!important;

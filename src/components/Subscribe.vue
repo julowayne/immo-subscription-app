@@ -4,26 +4,31 @@
       <ion-label for="lastname">
         Nom
       </ion-label>
+      <div class="errors" v-if="errors">{{errors[1]}}</div>
       <ion-input v-model="registerForm.lastname" id="lastname" type="text"></ion-input>
 
       <ion-label for="firstname">
         Prénom
       </ion-label>
+      <div class="errors" v-if="errors">{{errors[0]}}</div>
       <ion-input v-model="registerForm.firstname" id="firstname" type="text"></ion-input>
 
       <ion-label class="block" for="email">
         Email
       </ion-label>
+      <div class="errors" v-if="errors">{{errors[3]}}</div>
       <ion-input v-model="registerForm.email" id="email" type="email"></ion-input>
   
       <ion-label class="block" for="siret">
         N° Siret
       </ion-label>
+      <div class="errors" v-if="errors">{{errors[2]}}</div>
       <ion-input v-model="registerForm.siret" id="siret" type="text"></ion-input>
 
       <ion-label class="block" for="password">
         Password
       </ion-label>
+      <div class="errors" v-if="errors">{{errors[4]}}</div>
       <ion-input v-model="registerForm.password" id="password" type="password"></ion-input>
       <div class="ion-text-center">
         <ion-button type="submit">
@@ -77,9 +82,13 @@ import axios from 'axios'
         })
         .catch(error => {
           console.log(error);
-          // if(error.response.status === 400 || error.response.status ===  422){
-          //   return this.errors.push(error.response.data.messages[0])
-          //   }
+          if(error.response.status === 400 || error.response.status ===  422){
+            return this.errors.push(error.response.data.errors.firstname[0], 
+                                    error.response.data.errors.lastname[0], 
+                                    error.response.data.errors.siret[0],
+                                    error.response.data.errors.email[0],
+                                    error.response.data.errors.password[0])
+            }
           //   console.log(error.response.data);
           //   console.log(error.response.status);
           //   console.log(error.response.headers);
@@ -95,6 +104,10 @@ import axios from 'axios'
 a {
   text-decoration: none;
   color:#20c997;
+}
+.errors {
+  margin: 2px 0;
+  color:red;
 }
 ion-button {
   --box-shadow: 0 .125rem .25rem rgba(0,0,0,.075)!important;
