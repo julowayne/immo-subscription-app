@@ -46,7 +46,6 @@
 
 <script>
 import { IonInput, IonLabel, IonButton } from '@ionic/vue';
-// import axios from 'axios'
 import { mapActions, mapGetters } from 'vuex'
 
 

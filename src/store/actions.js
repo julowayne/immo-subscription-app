@@ -16,9 +16,8 @@ export const register = ({ commit }, registerForm) => {
             password: registerForm.password,
           } 
         })
-        .then((response)=> {
+        .then(()=> {
           router.push({ path: `/` })
-          console.log(response)
         })
         .catch((error) => {
           commit('messages', [error.response.data.errors.firstname[0], 
@@ -53,10 +52,8 @@ export const login = ({ commit }, loginForm) => {
       }
       commit('data', user)
       router.push({ path: `/` })
-      console.log(response)
     })
     .catch((error) => {
-      console.log(error)
       commit('messages', [error.response.data.errors.email[0], error.response.data.errors.password[0]])  
   });
 }
@@ -78,8 +75,6 @@ export const getAllNews = ({commit}) => {
     .then((response)=> {
       const news = response.data.allNews
       commit('news', news)  
-    //   this.allNews = response.data.allNews
-      console.log(response)
     })
     .catch(error => {
       console.log(error);

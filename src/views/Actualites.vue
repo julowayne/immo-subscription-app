@@ -11,7 +11,6 @@
 import { IonPage, IonContent} from '@ionic/vue';
 import Layout from '@/components/Layout.vue';
 import NewsCard from '@/components/Actualites/NewsCard.vue';
-// import axios from 'axios'
 
 
 export default  {

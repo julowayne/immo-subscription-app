@@ -43,7 +43,6 @@
 
 <script>
 import { IonInput, IonLabel, IonButton, IonTextarea } from '@ionic/vue';
-// import axios from 'axios'
 
 export default {
   name: 'ContactForm',
@@ -61,43 +60,6 @@ export default {
       errors: []
     }
   },
-  methods:{
-    contact(){
-    //   console.log(this.contactForm.email)
-    //   axios(`${process.env.VUE_APP_URL}api/contact`, {
-    //     // axios(`http://127.0.0.1:8000/contact`, {
-    //       method: 'POST',
-    //     //   headers: {
-    //     //   'Access-Control-Allow-Origin': '*',
-    //     //   'Accept': 'application/json',
-    //     //   'Content-Type': 'application/json'
-    //     // },
-    //     data: {
-    //       lastname: this.contactForm.lastname,
-    //       firstname: this.contactForm.firstname,
-    //       email: this.contactForm.email,
-    //       object: this.contactForm.object,
-    //       message: this.contactForm.message,
-    //     } 
-    //   })
-    //   .then((response)=> {
-    //     this.$router.push({ path: "/" });
-    //     this.token = response.data.token
-    //     console.log(this.token)
-    //   })
-    //   .catch(error => {
-    //     if(error.response.status === 400 || error.response.status ===  422){
-    //       return this.errors.push(error.response.data.errors.lastname[0],
-    //                               error.response.data.errors.firstname[0],
-    //                               error.response.data.errors.email[0],
-    //                               error.response.data.errors.object[0],
-    //                               error.response.data.errors.message[0],)
-    //     }
-    // });
-    // this.contactForm = {}
-    // this.errors = []
-    },
-  }
 }
 </script>
 
