@@ -1,32 +1,39 @@
 <template>
   <div>
-    <ion-card v-for="news in allNews" :key="news">
-      <img :src="news.image" />
+    <ion-card v-for="actu in news" :key="actu">
+      <img :src="actu.image" />
       <ion-card-header>
-        <ion-card-subtitle>A définir</ion-card-subtitle>
-        <ion-card-title>{{news.title}}</ion-card-title>
+        <ion-card-title>{{actu.title}}</ion-card-title>
       </ion-card-header>
-      <ion-card-content>
-        {{ news.body }}
+      <ion-card-content v-html="actu.body">
       </ion-card-content>
     </ion-card>
   </div>
 </template>
 
 <script>
-import { IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonCardContent } from '@ionic/vue';
+import { IonCard, IonCardHeader, IonCardTitle, IonCardContent } from '@ionic/vue';
+import { mapActions, mapGetters } from 'vuex'
 
   export default {
     name: "newsCard",
     components: {
       IonCard, 
       IonCardHeader, 
-      IonCardSubtitle,
       IonCardTitle,  
       IonCardContent
     },
-    props: {
-      allNews: Array
+    computed: {
+        ...mapGetters(['news'])
+    },
+    methods: {
+      ...mapActions(['getAllNews']),
+        allNews(){
+          this.getAllNews()
+      },
+    },
+    mounted(){
+      this.allNews()
     }
   }
 </script>

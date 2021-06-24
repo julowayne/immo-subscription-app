@@ -5,15 +5,20 @@
         <ion-img src="assets/icon/alfred-logo-teal-nav-app.png"></ion-img>
       </ion-buttons>
       <ion-title> {{ $route.name }}</ion-title>
-      <ion-buttons slot="end" @click.prevent="getProfile">
-        <ion-img src="assets/icon/utilisateur-nav-app.png"></ion-img>
-      </ion-buttons>
+        <ion-buttons slot="end" @click.prevent="getProfile">
+          <ion-img src="assets/icon/utilisateur-nav-app.png"></ion-img>
+        </ion-buttons>
+        <!-- <ion-buttons slot="end" @click.prevent="home">
+          <ion-img src="assets/icon/utilisateur-nav-app.png"></ion-img>
+        </ion-buttons> -->
     </ion-toolbar>
   </ion-header>
 </template>
 
 <script>
 import { IonTitle, IonHeader, IonToolbar, IonImg, IonButtons } from '@ionic/vue';
+import { mapGetters } from 'vuex'
+
 
 export default  {
   name: 'Layout',
@@ -25,7 +30,10 @@ export default  {
     home(){
       this.$router.push({ path: "/"});
     }
-  }
+  },
+  computed: {
+    ...mapGetters(['user']),
+  },
 }
 </script>
 <style>
@@ -41,7 +49,6 @@ ion-toolbar {
   background-color: white;
   box-shadow: 0 .125rem .25rem rgba(0,0,0,.075)!important;
   border: none;
-
 }
 ion-buttons {
   max-height: 10vh;

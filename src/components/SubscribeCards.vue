@@ -18,6 +18,7 @@
         </div>
       </div>
       <div class="ion-text-center" id="choose">
+        
         <ion-button type="button">
           Choisir
         </ion-button>
@@ -41,9 +42,11 @@
         </div>
       </div>
       <div class="ion-text-center" id="choose">
-        <ion-button type="button">
-          Choisir
-        </ion-button>
+        <a href="/tabs/checkout">
+          <ion-button type="button">
+            Choisir
+          </ion-button>
+        </a>
       </div>
       </ion-card-content>
     </ion-card>

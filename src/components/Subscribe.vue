@@ -1,34 +1,39 @@
 <template>
   <div class="content">
-    <form method="POST" @submit.prevent="register">
+    <form method="POST" @submit.prevent="registerUser(registerForm)">
+      <div v-if="messages">
+        <div v-for="error in messages.error" :key="error">
+          {{ error }}
+          </div>
+      </div>
       <ion-label for="lastname">
         Nom
       </ion-label>
-      <div class="errors" v-if="errors">{{errors[1]}}</div>
+      <!-- <div class="errors" v-if="errors">{{errors[1]}}</div> -->
       <ion-input v-model="registerForm.lastname" id="lastname" type="text"></ion-input>
 
       <ion-label for="firstname">
         Prénom
       </ion-label>
-      <div class="errors" v-if="errors">{{errors[0]}}</div>
+      <!-- <div class="errors" v-if="errors">{{errors[0]}}</div> -->
       <ion-input v-model="registerForm.firstname" id="firstname" type="text"></ion-input>
 
       <ion-label class="block" for="email">
         Email
       </ion-label>
-      <div class="errors" v-if="errors">{{errors[3]}}</div>
+      <!-- <div class="errors" v-if="errors">{{errors[3]}}</div> -->
       <ion-input v-model="registerForm.email" id="email" type="email"></ion-input>
   
       <ion-label class="block" for="siret">
         N° Siret
       </ion-label>
-      <div class="errors" v-if="errors">{{errors[2]}}</div>
+      <!-- <div class="errors" v-if="errors">{{errors[2]}}</div> -->
       <ion-input v-model="registerForm.siret" id="siret" type="text"></ion-input>
 
       <ion-label class="block" for="password">
         Password
       </ion-label>
-      <div class="errors" v-if="errors">{{errors[4]}}</div>
+      <!-- <div class="errors" v-if="errors">{{errors[4]}}</div> -->
       <ion-input v-model="registerForm.password" id="password" type="password"></ion-input>
       <div class="ion-text-center">
         <ion-button type="submit">
@@ -41,7 +46,9 @@
 
 <script>
 import { IonInput, IonLabel, IonButton } from '@ionic/vue';
-import axios from 'axios'
+// import axios from 'axios'
+import { mapActions, mapGetters } from 'vuex'
+
 
 
   export default {
@@ -49,51 +56,16 @@ import axios from 'axios'
     components: { IonInput, IonLabel, IonButton  },
     data(){
       return {
-        registerForm: {
-          firstname: '',
-          lastname: '',
-          email: '',
-          siret: '',
-          password: ''
-        },
-        errors: [],
+        registerForm: {},
       }
     },
+    computed: {
+     ...mapGetters(['messages'])
+    },
     methods:{
-      register(){
-        axios(`${process.env.VUE_APP_URL}api/auth/register`, {
-            method: 'POST',
-            headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-          },
-          data: {
-            firstname: this.registerForm.firstname,
-            lastname: this.registerForm.lastname,
-            email: this.registerForm.email,
-            siret: this.registerForm.siret,
-            password: this.registerForm.password,
-          } 
-        })
-        .then((response)=> {
-          // if(response.status === 201) return this.validationMessage = response.data.message, this.token = response.data.token
-          this.$router.push({ path: "/" });
-          console.log(response)
-        })
-        .catch(error => {
-          console.log(error);
-          if(error.response.status === 400 || error.response.status ===  422){
-            return this.errors.push(error.response.data.errors.firstname[0], 
-                                    error.response.data.errors.lastname[0], 
-                                    error.response.data.errors.siret[0],
-                                    error.response.data.errors.email[0],
-                                    error.response.data.errors.password[0])
-            }
-          //   console.log(error.response.data);
-          //   console.log(error.response.status);
-          //   console.log(error.response.headers);
-      });
-      this.errors = []
+      ...mapActions(['register']),
+        registerUser(registerForm){
+            this.register(registerForm)
       },
     }
   }

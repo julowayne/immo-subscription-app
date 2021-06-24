@@ -20,6 +20,11 @@ const routes = [
         component: () => import('@/views/Profile.vue')
       },
       {
+        path: 'checkout',
+        name: 'Checkout',
+        component: () => import('@/views/Checkout.vue')
+      },
+      {
         path: 'profile/formule',
         name: 'Formule',
         component: () => import('@/views/Profile.vue')
